@@ -32,9 +32,12 @@ RUN  wget -nv --output-document=/opt/$SOLR.tgz http://www.gtlib.gatech.edu/pub/a
   rm /opt/$SOLR.tgz && \
   ln -s /opt/$SOLR /opt/solr
 
+ADD http://jdbc.postgresql.org/download/postgresql-9.3-1102.jdbc41.jar /opt/solr/dist/postgresql-9.3-1102.jdbc41.jar
+
 EXPOSE 8983
 
 ADD run.sh /run.sh
 RUN chmod +x /*.sh
 
 CMD ["/run.sh"]
+
