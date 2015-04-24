@@ -33,7 +33,7 @@ ENV JRE_HOME $JAVA_HOME
 ENV JAVA_OPTS "-Djava.awt.headless=true"
 ENV JAVA_ENDORSED_DIRS /opt/tomcat/endorsed
 
-RUN  wget -nv --output-document=/opt/$SOLR.tgz http://www.gtlib.gatech.edu/pub/apache/lucene/solr/$SOLR_VERSION/$SOLR.tgz && \
+RUN  wget -nv --output-document=/opt/$SOLR.tgz http://ftp.osuosl.org/pub/apache/lucene/solr/$SOLR_VERSION/$SOLR.tgz && \
   tar -C /opt --extract --file /opt/$SOLR.tgz && \
   rm /opt/$SOLR.tgz && \
   ln -s /opt/$SOLR /opt/solr
@@ -66,8 +66,6 @@ RUN cp -a /opt/solr/example/resources/log4j.properties /opt/tomcat/conf/
 RUN cp -a /opt/solr/dist/solr-*.war /opt/tomcat/webapps/solr.war
 RUN cp /usr/share/java/slf4j/slf4j-simple.jar /opt/tomcat/lib/
 RUN cp -rn /usr/share/java/* /opt/tomcat/lib/
-#RUN cp -rn /opt/solr/contrib/analysis-extras/lib/* /opt/tomcat/lib/
-#RUN cp -rn /opt/solr/contrib/analysis-extras/lucene-libs/* /opt/tomcat/lib/
 
 #Now let's add the sufia configuration
 RUN mkdir -p /opt/tomcat/solr/cores/osfsufia
